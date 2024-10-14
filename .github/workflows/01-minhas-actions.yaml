@@ -25,3 +25,22 @@ jobs:
                 git branch 
                 java --version  
                 mvn clean package  
+    deploy:
+        needs: build
+        runs-on: ubuntu-latest
+        environment: production
+        steps:             
+            - name: Git Checkout 
+              uses: actions/checkout@v4 
+            - name: Setup Java SDK 
+              uses: actions/setup-java@v4 
+              with: 
+                distribution: 'temurin'  
+                java-version: '21' 
+            - name: Azure Login
+              uses: azure/fiap
+              with:
+                creds: ${{ secrets.AZURE_CREDENTIALS }}
+                
+          
+        
