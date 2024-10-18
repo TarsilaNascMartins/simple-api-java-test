@@ -17,7 +17,7 @@ jobs:
                 distribution: 'temurin'  
                 java-version: '21' 
             - name: Build 
-              uses: docker/build-push-action@v6 
+              uses: ./Dockerfile
               with: 
                 push: false                     
             - name: Executar scripts 
